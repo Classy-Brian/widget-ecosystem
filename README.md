@@ -1,17 +1,41 @@
-# home_widget_ecosystem
+# Home Screen Widget Ecosystem 📱
 
-A new Flutter project.
+A customizable home screen widget application designed to streamline daily productivity. This project combines a core calendar and to-do list with a scalable architecture built to support future feature integrations without relying on cloud databases.
 
-## Getting Started
+## 🚀 Features & Roadmap
 
-This project is a starting point for a Flutter application.
+**Phase 0 - The Environment & Setup [COMPLETED]**
+* Outline and finalized core ideas
+* Environment Setup (Android Studio, Flutter, Virtual Device)
+* App Skeleton & Local Git Repository generated
 
-A few resources to get you started if this is your first Flutter project:
+**Phase 1 - The Core Skeleton [WIP]**
+* Local Database: Set up the internal database structure (SQLite/Isar)
+* To-Do Feature: Create tasks (Name, description, date, mark complete)
+* Calendar Feature: Set basic tasks/events with optional time
+* UI: Build the basic visual layout for the widgets
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+**Phase 2 - Make it Useful [NOT STARTED]**
+* To-Do: Add Sub-tasks, notifications
+* Calendar: Add recurring events, Google Calendar integration, notifications
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Phase 3 - Expansion [NOT STARTED]**
+* PC Integration: Configure Windows desktop build and SQLite integration
+
+## 🛠️ Built With
+* Flutter (Framework)
+* Dart (Language)
+* Android Studio (IDE)
+* Target Platform: Android (Future: Windows PC)
+
+## 📸 Previews
+*(Screenshots coming soon during Phase 1 UI development)*
+
+## ⚙️ Getting Started
+To run this project locally:
+
+1. Ensure you have the Flutter SDK and Android Studio installed.
+2. Clone the repository: `git clone https://github.com/Classy-Brian/widget-ecosystem.git`
+3. Navigate to the directory: `cd home_widget_ecosystem`
+4. Install dependencies: `flutter pub get`
+5. Run the app on an attached device or emulator: `flutter run`
