@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+import '../database/app_database.dart';
+
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen>{
+  late AppDatabase _database;
+
+  @override void initState() {
+    super.initState();
+    _database = AppDatabase();
+  }
+
+  @override
+  void dispose() {
+    _database.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
