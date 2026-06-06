@@ -35,7 +35,21 @@ class _DashboardScreenState extends State<DashboardScreen>{
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            _buildWidget("Calendar"),
+            StreamBuilder<List<CalendarEvent>>(
+                stream: calendarStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return _buildWidget("Calendar (Error!)");
+                  }
+
+                  if (!snapshot.hasData) {
+                    return _buildWidget("Calendar (loading...)");
+                  }
+
+                  final events = snapshot.data!;
+                  return _buildWidget("Calendar (${events.length} events)");
+                }
+            ),
             SizedBox( height: 16),
             _buildWidget("To-Do List"),
           ],
@@ -55,5 +69,9 @@ class _DashboardScreenState extends State<DashboardScreen>{
       ),
       child: Text(title),
     );
+  }
+
+  Stream<List<CalendarEvent>> get calendarStream {
+    return _database.select(_database.calendarEvents).watch();
   }
 }
