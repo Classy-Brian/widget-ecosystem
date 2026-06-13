@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:drift/drift.dart' as drift;
 
 import '../database/app_database.dart';
 
@@ -51,9 +52,35 @@ class _DashboardScreenState extends State<DashboardScreen>{
                 }
             ),
             SizedBox( height: 16),
-            _buildWidget("To-Do List"),
+            StreamBuilder<List<ToDoItem>>(
+                stream: toDoItemStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return _buildWidget("To-do Item (Error!)");
+                  }
+
+                  if (!snapshot.hasData) {
+                    return _buildWidget("To-do Item (loading...)");
+                  }
+
+                  final events = snapshot.data!;
+                  return _buildWidget("Todo (${events.length} items)");
+                }
+            ),
           ],
         ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await _database.into(_database.toDoItems).insert(
+              ToDoItemsCompanion(
+                title: const drift.Value('Wakey Wakey'),
+                description: const drift.Value('ITS TIME FOR SCHOOL!'),
+              ),
+            );
+          },
+          child: const Icon(Icons.add),
       ),
     );
   }
@@ -73,5 +100,9 @@ class _DashboardScreenState extends State<DashboardScreen>{
 
   Stream<List<CalendarEvent>> get calendarStream {
     return _database.select(_database.calendarEvents).watch();
+  }
+
+  Stream<List<ToDoItem>> get toDoItemStream{
+    return _database.select(_database.toDoItems).watch();
   }
 }
